@@ -101,6 +101,7 @@ h1 {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  overflow: auto;
 }
 
 .bird-card-article {

@@ -1,16 +1,55 @@
+let birdSightings = []
+let counter = 0;
+
+const onPageLoad = () => {
+  var birdCards = localStorage.getItem('birdCalls');
+  var parsedBirdCalls = JSON.parse(birdCards);
+  if (parsedBirdCalls !== null) {
+    bringItBack(parsedBirdCalls);
+  }
+}
+
+const onSubmitButton = () => {
+  const newBirdCard = getBirdSighting();
+  addBirdSighting(newBirdCard);
+  clearInputs();
+}
+
+const bringItBack = (birdCards) => {
+  let instantiatedBirdCards = birdCards.map(birdCard => {
+    const { location, species, date, story } = birdCard;
+    return new BirdCard(location, species, date, story);
+  });
+  instantiatedBirdCards.forEach(instantiatedBirdCard => {
+    instantiatedBirdCard.updateId(birdSightings);
+    birdSightings.push(instantiatedBirdCard);
+    addBirdSighting(instantiatedBirdCard);
+  });
+}
+
 const getBirdSighting = () => {
   const location = document.getElementById('location').value;
   const species = document.getElementById('species').value;
   const date = document.getElementById('date').value;
   const story = document.getElementById('story').value;
   const newBirdCard = new BirdCard(location, species, date, story);
-  clearInputs();
+  newBirdCard.updateId(birdSightings);
+  birdSightings.push(newBirdCard);
+  const stringBirds = JSON.stringify(birdSightings);
+  localStorage.setItem('birdCalls', stringBirds);
   return newBirdCard;
 }
 
 const deleteBirdSighting = () => {
   if (event.target.classList.contains('delete-button')) {
     event.target.parentNode.remove();
+    const id = event.target.dataset.cardid;
+    birdSightings = birdSightings.filter(birdSighting => {
+      return birdSighting.id !== parseInt(id);
+    });
+    console.log(birdSightings)
+    const stringBirds = JSON.stringify(birdSightings);
+    localStorage.setItem('birdCalls', stringBirds);
   }
 }
 
@@ -21,9 +60,8 @@ const clearInputs = () => {
   document.getElementById('story').value = '';
 }
 
-const addBirdSighting = () => {
-  const birdCardInfo = getBirdSighting();
-  const {location, species, date, story} = birdCardInfo;
+const addBirdSighting = (birdCard) => {
+  const {location, species, date, story, id} = birdCard;
   birdCardContainer.innerHTML += `
     <article class='bird-card-article'>
       <h2 class='bird-card-header'>${species}</h2>
@@ -32,12 +70,13 @@ const addBirdSighting = () => {
         <p class='bird-card-p'>date: ${date}</p>
         <p class='bird-card-p'>story: ${story}</p>
       </section>
-      <button class='delete-button' id='delete-button'>Remove</button>
+      <button class='delete-button' id='delete-button' data-cardid='${id}'>Remove</button>
     </article>
   `
 }
 
 const birdCardContainer = document.getElementById('bird-card-container');
 const submitButton = document.getElementById('submit-button');
-submitButton.addEventListener('click', addBirdSighting);
+window.addEventListener("load", onPageLoad);
+submitButton.addEventListener('click', onSubmitButton);
 birdCardContainer.addEventListener('click', deleteBirdSighting);

@@ -35,8 +35,7 @@ const getBirdSighting = () => {
   const newBirdCard = new BirdCard(location, species, date, story);
   newBirdCard.updateId(birdSightings);
   birdSightings.push(newBirdCard);
-  const stringBirds = JSON.stringify(birdSightings);
-  localStorage.setItem('birdCalls', stringBirds);
+  setLocalStorage(birdSightings);
   return newBirdCard;
 }
 
@@ -47,17 +46,20 @@ const deleteBirdSighting = () => {
     birdSightings = birdSightings.filter(birdSighting => {
       return birdSighting.id !== parseInt(id);
     });
-    console.log(birdSightings)
-    const stringBirds = JSON.stringify(birdSightings);
-    localStorage.setItem('birdCalls', stringBirds);
+    setLocalStorage(birdSightings);
   }
+}
+
+const setLocalStorage = (allCards) => {
+  const stringBirds = JSON.stringify(allCards);
+  localStorage.setItem('birdCalls', stringBirds);
 }
 
 const clearInputs = () => {
   document.getElementById('location').value = '';
   document.getElementById('species').value = '';
   document.getElementById('date').value = '';
-  document.getElementById('story').value = '';
+  document.getElementById('story').value = null;
 }
 
 const addBirdSighting = (birdCard) => {
@@ -68,8 +70,8 @@ const addBirdSighting = (birdCard) => {
       <section class='bird-card-section'>
         <p class='bird-card-p'>location: ${location}</p>
         <p class='bird-card-p'>date: ${date}</p>
-        <p class='bird-card-p'>story: ${story}</p>
       </section>
+      <p class='bird-card-story'>${story}</p>
       <button class='delete-button' id='delete-button' data-cardid='${id}'>Remove</button>
     </article>
   `

@@ -29,7 +29,7 @@ h1 {
   color: white;
   padding: 0 15px;
   border: 1px solid black;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
 }
 /* ASIDE */
@@ -41,15 +41,15 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: #E8F8F5;
+  background-color: #F2F3F3;
+  border-right: 5px solid #718C74;
 }
 
 .aside-header {
-  margin: 15px 0;
+  margin: 5px 0;
   font-size: 2.5em;
   width: 90%;
   padding: 10px;
-  border-bottom: 2px solid black;
   text-align: center;
 }
 
@@ -81,16 +81,27 @@ h1 {
   padding: 5px;
   font-size: 1em;
   border-radius: 10px;
+  outline: 0;
 }
 
 .bird-submit-button {
   width: 75%;
   font-size: 1em;
   padding: 5px;
-  margin: 10px 0;
+  margin-top: 20px;
   border-radius: 10px;
   outline: 0;
   cursor: pointer;
+  background-color: #71828C;
+  color: white;
+}
+
+.bird-submit-button:hover {
+  transform: scale(1.1);
+}
+
+.textarea {
+  width: 90%;
 }
 
 /* MAIN */
@@ -111,10 +122,14 @@ h1 {
   justify-content: space-around;
   margin: 10px;
   width: 300px;
-  height: 300px;
-  border: 5px solid lightblue;
+  height: 325px;
+  border: 5px solid #718C74;
   border-radius: 10px;
-  background-color: lightgrey;
+  background-color: #EFFEFC;
+}
+
+.bird-card-header {
+  text-align: center;
 }
 
 .bird-card-section {
@@ -122,14 +137,26 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  height: 200px;
+  height: 75px;
+  width: 80%;
+}
+
+.bird-card-story {
+  width: 90%;
 }
 
 .delete-button {
+  margin-bottom: 10px;
   width: 50%;
   font-size: 1em;
   padding: 5px;
   border-radius: 10px;
   outline: 0;
   cursor: pointer;
-}
+  background-color: #71828C;
+  color: white;
+  }
+
+  .delete-button:hover {
+  transform: scale(1.1);
+  }

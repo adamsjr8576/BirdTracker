@@ -15,19 +15,20 @@
       <form class='bird-form'>
         <section class='input-container'>
           <label for='location'>Location: </label>
-          <input type='text' class='bird-input' name='lcoation' id='location'>
+          <input type='text' class='bird-input' name='lcoation' id='location' placeholder='Sighting Location'>
         </section>
         <section class='input-container'>
           <label for='species'>Bird  Species: </label>
-          <input type='text' class='bird-input' name='species-input' id='species'>
+          <input type='text' class='bird-input' name='species-input' id='species' placeholder='Bird Species...'>
         </section>
         <section class='input-container'>
           <label for='date'>date: </label>
           <input type='date' class='bird-input' name='date-input' id='date'>
         </section>
         <section class='input-container'>
-          <label for='story'>story: </label>
-          <input type='text' class='bird-input' name='story-input' id='story'>
+          <label for='story'>Notes: </label>
+          <textarea rows='4' class='bird-input textarea' name='story-input' id='story' placeholder='Enter Story Here....'>
+          </textarea>
         </section>
         <button type='button' class='bird-submit-button' id='submit-button'>Submit Encounter</button>
       </form>

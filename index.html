@@ -7,13 +7,34 @@
   </head>
   <body>
     <header class='body-header'>
-      <h1>Bird Tracker</h1>
+      <h1>Bird</h1>
+      <h1>Tracker</h1>
     </header>
     <aside class='body-aside'>
-      <h2>Bird Sighting</h2>
-      
+      <h2 class='aside-header'>Bird Sighting</h2>
+      <form class='bird-form'>
+        <section class='input-container'>
+          <label for='location'>Location: </label>
+          <input type='text' class='bird-input' name='lcoation' id='location'>
+        </section>
+        <section class='input-container'>
+          <label for='species'>Bird  Species: </label>
+          <input type='text' class='bird-input' name='species-input' id='species'>
+        </section>
+        <section class='input-container'>
+          <label for='date'>date: </label>
+          <input type='date' class='bird-input' name='date-input' id='date'>
+        </section>
+        <section class='input-container'>
+          <label for='story'>story: </label>
+          <input type='text' class='bird-input' name='story-input' id='story'>
+        </section>
+        <button type='button' class='bird-submit-button' id='submit-button'>Submit Encounter</button>
+      </form>
     </aside>
-    <main class='body-main'>
+    <main class='body-main' id='bird-card-container'>
     </main>
+    <script src="BirdCard.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
